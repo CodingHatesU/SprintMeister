@@ -7,26 +7,19 @@ import {z} from "zod";
 
 import { Button } from "@/components/ui/button";
 import {Card, CardHeader, CardContent, CardTitle, CardDescription} from "@/components/ui/card"
-import { DottedSaperator } from "@/components/ui/dotted-separator";
+import { DottedSaperator } from "@/components/dotted-separator";
 import { Input } from "@/components/ui/input";
 import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
 import Link from "next/link";
-
-
-const formSchema = z.object({
-    name: z.string().trim().min(1,"Required"),
-    email: z.string().email(),
-    password: z.string().min(8, "Minimum of 8 characters are required"),
-    confPassword: z.string().min(8, "Minimum of 8 characters are required")
-}).refine((data) => data.password === data.confPassword, {
-    message: "Passwords don't match",
-    path: ["confPassword"],
-});
+import { signupSchema } from "../schemas";
+import { useRegister } from "../api/use-register";
 
 
 export const SignUpCard = () => {
-    const form = useForm<z.infer<typeof formSchema>>({
-        resolver: zodResolver(formSchema),
+    const { mutate} = useRegister();
+
+    const form = useForm<z.infer<typeof signupSchema>>({
+        resolver: zodResolver(signupSchema),
         defaultValues: {
             name: "",
             email: "",
@@ -36,8 +29,10 @@ export const SignUpCard = () => {
     });
 
 
-    const onSubmit = (values: z.infer<typeof formSchema>) => {
-        console.log({values})
+    const onSubmit = (values: z.infer<typeof signupSchema>) => {
+        mutate({
+            json: values
+        });
     }
 
     return (
@@ -143,6 +138,15 @@ export const SignUpCard = () => {
                     <FaGithub className="mr-2 size-5"/>
                     Sign Up with Github 
                 </Button>
+            </CardContent>
+            <div className="px-7">
+                <DottedSaperator/>
+            </div>
+            <CardContent className="p-3 flex justify-center items-center">
+                <p>
+                    Already have an account? {" "}
+                    <Link href="/sign-in" className="text-blue-700">Log In</Link>
+                </p>
             </CardContent>
         </Card>
     );

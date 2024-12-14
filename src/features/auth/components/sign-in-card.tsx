@@ -6,29 +6,28 @@ import {zodResolver} from "@hookform/resolvers/zod";
 import {z} from "zod";
 import { Button } from "@/components/ui/button";
 import {Card, CardHeader, CardContent, CardTitle} from "@/components/ui/card";
-import { DottedSaperator } from "@/components/ui/dotted-separator";
+import { DottedSaperator } from "@/components/dotted-separator";
 import { Input } from "@/components/ui/input";
 import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
+import Link from "next/link";
+import { loginSchema } from "../schemas";
+import { useLogin } from "../api/use-login";
 
-
-
-const formSchema = z.object({
-    email: z.string().email(),
-    password: z.string().min(1, "Required")
-});
 
 
 export const SignInCard = () => {
-    const form = useForm<z.infer<typeof formSchema>>({
-        resolver: zodResolver(formSchema),
+    const {mutate} = useLogin();
+
+    const form = useForm<z.infer<typeof loginSchema>>({
+        resolver: zodResolver(loginSchema),
         defaultValues: {
             email: "",
             password: ""
         }
     });
 
-    const onSubmit = (values: z.infer<typeof formSchema>) => {
-        console.log({values})
+    const onSubmit = (values: z.infer<typeof loginSchema>) => {
+        mutate({    json: values});
     }
 
     return (
@@ -94,6 +93,15 @@ export const SignInCard = () => {
                     <FaGithub className="mr-2 size-5"/>
                     Login with Github 
                 </Button>
+            </CardContent>
+            <div className="px-7">
+                <DottedSaperator/>
+            </div>
+            <CardContent className="p-3 flex justify-center items-center">
+                <p>
+                    Don't have an account? {" "}
+                    <Link href="/sign-up" className="text-blue-700">Sign Up</Link>
+                </p>
             </CardContent>
         </Card>
     );
