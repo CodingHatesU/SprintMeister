@@ -8,14 +8,14 @@ import { ID } from "node-appwrite";
 const app = new Hono()
     .post(
         "/",
-        zValidator("json", createWorkspaceSchema),
+        zValidator("form", createWorkspaceSchema),
         sessionMiddleware,
         async (c) => {
             const databases = c.get("databases");
             const storage = c.get("storage");
             const user = c.get("user");
 
-            const {name, image} = c.req.valid("json");
+            const {name, image} = c.req.valid("form");
 
             let uploadedImageUrl: string | undefined;
 
@@ -24,7 +24,14 @@ const app = new Hono()
                     IMAGES_BUCKET_ID,
                     ID.unique(),
                     image
-                )
+                );
+
+                const arrayBuffer = await storage.getFilePreview(
+                    IMAGES_BUCKET_ID,
+                    file.$id
+                );
+
+                uploadedImageUrl = `data:image.png;base64,${Buffer.from(arrayBuffer).toString("base64")}`;
             }
 
             const workspace = await databases.createDocument(
@@ -33,7 +40,8 @@ const app = new Hono()
                 ID.unique(),
                 {
                     name,
-                    userID: user.$id
+                    userID: user.$id,
+                    imageUrl: uploadedImageUrl
                 }
             )
 

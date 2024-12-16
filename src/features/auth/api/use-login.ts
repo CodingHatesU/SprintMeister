@@ -29,7 +29,6 @@ export const useLogin = () => {
         },
         onSuccess: () => {
             toast.success("Logged in!")
-            router.refresh();
             queryClient.invalidateQueries({queryKey: ["current"]})
         },
         onError: () => {

@@ -26,8 +26,8 @@ export const useLogout = () => {
             return await response.json();
         },
         onSuccess: () => {
-            toast.success("Logged out!")
             router.refresh();
+            toast.success("Logged out!")
             queryClient.invalidateQueries({queryKey: ["current"]})
         },
         onError: () => {
