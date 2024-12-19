@@ -21,6 +21,7 @@ import { Button } from "@/components/ui/button";
 import { useCreateWorkspace } from "../api/use-create-workspace";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { ImageIcon } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 
 
@@ -31,6 +32,7 @@ interface createWorkspaceFormProps {
 
 
 export const CreateWorkspaceForm = ({ onCancel }: createWorkspaceFormProps) => {
+    const router = useRouter();
     const{mutate, isPending} = useCreateWorkspace();
 
 
@@ -50,7 +52,12 @@ export const CreateWorkspaceForm = ({ onCancel }: createWorkspaceFormProps) => {
             image: values.image  instanceof File ? values.image : ""
         }
 
-        mutate({form: finalValues});
+        mutate({form: finalValues}, {
+            onSuccess: ({data}) => {
+                form.reset();
+                router.push(`/workspaces/${data.$id}`)
+            }
+        })
     };
 
 
