@@ -15,6 +15,7 @@ import {
     FormLabel,
     FormMessage
 } from "@/components/ui/form"
+import { cn } from "@/lib/utils"; 
 import { DottedSaperator } from "@/components/dotted-separator";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -170,6 +171,9 @@ export const CreateWorkspaceForm = ({ onCancel }: createWorkspaceFormProps) => {
                                 variant="secondary"
                                 onClick={onCancel} 
                                 disabled={isPending}
+                                className={cn(
+                                    onCancel? "visible" : "invisible"
+                                )}
                             >
                                 Cancel
                             </Button>
