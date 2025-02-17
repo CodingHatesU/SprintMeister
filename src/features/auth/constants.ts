@@ -1,1 +1,1 @@
-export const AUTH_COOKIE = "chu-taskmaster-session";
+export const AUTH_COOKIE = "cwa-jira-clone-session";
