@@ -70,9 +70,18 @@ To get a local copy up and running, follow these simple steps.
 To run this project, you will need to add the following environment variables to your `.env.local` file:
 
 ```
-NEXT_PUBLIC_APPWRITE_PROJECT_ID=
-NEXT_PUBLIC_APPWRITE_ENDPOINT=
-APPWRITE_API_KEY=
+NEXT_PUBLIC_APP_URL
+
+NEXT_PUBLIC_APPWRITE_ENDPOINT
+NEXT_PUBLIC_APPWRITE_PROJECT
+NEXT_PUBLIC_APPWRITE_DATABASE_ID
+NEXT_PUBLIC_APPWRITE_WORKSPACES_ID
+NEXT_PUBLIC_APPWRITE_MEMBERS_ID
+NEXT_PUBLIC_APPWRITE_PROJECTS_ID
+NEXT_PUBLIC_APPWRITE_TASKS_ID
+NEXT_PUBLIC_APPWRITE_IMAGES_BUCKET_ID
+
+NEXT_APPWRITE_KEY
 ```
 
 You can get these values from your Appwrite project settings.
