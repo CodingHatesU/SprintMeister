@@ -1,36 +1,110 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# SprintMeister
 
-## Getting Started
+SprintMeister is a powerful, open-source project management tool designed to help teams streamline their workflow, manage tasks effectively, and gain insights into their progress. Inspired by Jira, it provides a comprehensive suite of features for agile development, including sprint planning, task tracking, and performance analytics.
 
-First, run the development server:
+## ✨ Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- **Workspace Management:** Create and manage multiple workspaces to organize different projects and teams.
+- **Project Management:** Define projects, set goals, and track progress from a centralized dashboard.
+- **Task Management:** Create, assign, and track tasks with a flexible Kanban board.
+- **Drag & Drop:** Easily reorder and update task statuses with a smooth drag-and-drop interface.
+- **Sprints:** Organize tasks into sprints for better planning and execution.
+- **Analytics:** Gain valuable insights into team performance and project progress with detailed analytics and charts.
+- **Authentication:** Secure user authentication with support for email/password and OAuth providers.
+- **Members:** Invite and manage team members with different roles and permissions.
+- **Responsive Design:** A fully responsive UI that works seamlessly on desktops, tablets, and mobile devices.
+
+## 🚀 Tech Stack
+
+- **Framework:** [Next.js](https://nextjs.org/)
+- **Styling:** [Tailwind CSS](https://tailwindcss.com/)
+- **UI Components:** [Shadcn/UI](https://ui.shadcn.com/)
+- **State Management:** [TanStack Query](https://tanstack.com/query)
+- **Forms:** [React Hook Form](https://react-hook-form.com/) & [Zod](https://zod.dev/)
+- **API:** [Hono](https://hono.dev/)
+- **Backend:** [Appwrite](https://appwrite.io/)
+- **Tables:** [TanStack Table](https://tanstack.com/table)
+- **Drag & Drop:** [@hello-pangea/dnd](https://github.com/hello-pangea/dnd)
+- **Charts:** [Recharts](https://recharts.org/)
+- **Calendar:** [React Big Calendar](http://jquense.github.io/react-big-calendar/)
+
+## 🏁 Getting Started
+
+To get a local copy up and running, follow these simple steps.
+
+### Prerequisites
+
+- [Node.js](https://nodejs.org/en/) (v18 or higher)
+- [Bun](https://bun.sh/)
+- An [Appwrite](https://appwrite.io/) instance
+
+### Installation
+
+1.  **Clone the repository:**
+
+    ```bash
+    git clone https://github.com/your-username/SprintMeister.git
+    cd SprintMeister
+    ```
+
+2.  **Install dependencies:**
+
+    ```bash
+    bun install
+    ```
+
+3.  **Set up environment variables:**
+
+    Create a `.env.local` file in the root of the project and add the necessary environment variables. See the [Environment Variables](#-environment-variables) section for more details.
+
+4.  **Run the development server:**
+
+    ```bash
+    bun run dev
+    ```
+
+    Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+## 🔑 Environment Variables
+
+To run this project, you will need to add the following environment variables to your `.env.local` file:
+
+```
+NEXT_PUBLIC_APPWRITE_PROJECT_ID=
+NEXT_PUBLIC_APPWRITE_ENDPOINT=
+APPWRITE_API_KEY=
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+You can get these values from your Appwrite project settings.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📜 Available Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+In the project directory, you can run:
 
-## Learn More
+| Script        | Description                                     |
+| ------------- | ----------------------------------------------- |
+| `bun run dev`   | Runs the app in the development mode.           |
+| `bun run build` | Builds the app for production.                  |
+| `bun run start` | Starts the production server.                   |
+| `bun run lint`  | Runs the linter to check for code quality.      |
 
-To learn more about Next.js, take a look at the following resources:
+## 📁 Project Structure
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The project follows a feature-based architecture, where each feature has its own directory containing all the related files (API routes, components, hooks, etc.).
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```
+.
+├── src/
+│   ├── app/                # Next.js App Router, contains all the routes
+│   ├── components/         # Shared components and UI library
+│   ├── features/           # Feature-based modules (auth, projects, tasks, etc.)
+│   ├── hooks/              # Shared hooks
+│   ├── lib/                # Shared libraries and utilities
+│   └── config.ts           # Project configuration
+├── public/               # Static assets
+└── ...                   # Other configuration files
+```
 
-## Deploy on Vercel
+## 📄 License
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This project is licensed under the MIT License. See the `LICENSE` file for more information.
