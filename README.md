@@ -105,6 +105,69 @@ The project follows a feature-based architecture, where each feature has its own
 └── ...                   # Other configuration files
 ```
 
+## 📦 Data Models
+
+Here are the main data models used in the application:
+
+### Workspace
+
+```typescript
+export type Workspace = {
+  name: string;
+  imageUrl: string;
+  inviteCode: string;
+  userId: string;
+};
+```
+
+### Project
+
+```typescript
+export type Project = {
+  name: string;
+  imageUrl: string;
+  workspaceId: string;
+};
+```
+
+### Task
+
+```typescript
+export enum TaskStatus {
+  BACKLOG = "BACKLOG",
+  TODO = "TODO",
+  IN_PROGRESS = "IN_PROGRESS",
+  IN_REVIEW = "IN_REVIEW",
+  DONE = "DONE"
+};
+
+export type Task = {
+  name: string;
+  status: TaskStatus;
+  workspaceId: string;
+  assigneeId: string;
+  projectId: string;
+  position: number;
+  dueDate: string;
+  description?: string;
+};
+```
+
+### Member
+
+```typescript
+export enum MemberRole {
+  ADMIN = "ADMIN",
+  MEMBER = "MEMBER"
+};
+
+export type Member = {
+  workspaceId: string;
+  userId: string;
+  role: MemberRole;
+};
+```
+
 ## 📄 License
 
 This project is licensed under the MIT License. See the `LICENSE` file for more information.
